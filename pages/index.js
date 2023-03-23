@@ -1,20 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+// Next/React imports
+import { useEffect } from 'react';
+import Router from "next/router"
 
-const inter = Inter({ subsets: ['latin'] })
+export default function Index() {
 
-export default function Home() {
-  return (
-    <>
-      <Head>
-        <title>Expense Calculator</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles.main}>
-        <h1>Expense Calculator Application</h1>
-      </main>
-    </>
-  )
+  // Code to redirect the user to the home page upon entering
+  useEffect(() => {
+    Router.push("/home");
+  })
+
+  return <></>
 }
