@@ -10,7 +10,7 @@ export default function Navigation() {
     console.log(router.pathname);
     return(
         <>
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg bg-light shadow-sm">
             <div className="container-fluid">
 
                 {/* Navbar brand element */}
