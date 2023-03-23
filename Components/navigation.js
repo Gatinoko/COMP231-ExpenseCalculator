@@ -5,25 +5,27 @@
 export default function Navigation() {
     return(
         <>
-        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
 
-            {/* Navbar brand */}
-            <a class="navbar-brand" href="#">Navbar</a>
+                {/* Navbar brand element */}
+                <a class="navbar-brand" href="#">Navbar</a>
 
-            {/* Mobile toggler button */}
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            {/* Mobile toggler bar */}
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                {/* Hamburger icon */}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                {/* Options */}
+                {/* Mobile collapsable list */}
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                {/* Navigation bar list */}
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Features</a>
-                    <a class="nav-item nav-link" href="#">Pricing</a>
-                    <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link disabled">Disabled</a>
+                </div>
                 </div>
             </div>
         </nav>
