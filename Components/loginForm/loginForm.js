@@ -3,9 +3,19 @@
 */
 
 // CSS imports
+import { useState } from 'react'
 import styles from './loginForm.module.css'
 
 export default function LoginForm() {
+
+    const [getEmail, setEmail] = useState();
+    const [getPassword, setPassword] = useState();
+
+    function loginButtonOnClick() {
+        console.log(getEmail)
+        console.log(getPassword)
+    }
+
     return(
         <>
         <div className='container d-flex justify-content-center'>
@@ -24,7 +34,8 @@ export default function LoginForm() {
                         className="form-control" 
                         id="exampleFormControlInput1" 
                         placeholder="name@example.com"
-                        required />
+                        required
+                        onChange={(e) => { setEmail(e.target.value) }} />
                 </div>
 
                 {/* Password input field */}
@@ -35,12 +46,14 @@ export default function LoginForm() {
                             className="form-control" 
                             id="exampleFormControlInput1" 
                             placeholder='*******' 
-                            required />
+                            required
+                            onChange={(e) => { setPassword(e.target.value) }} />
                 </div>
 
                 {/* Login button */}
-                <button type="submit" 
-                        className="btn btn-light align-self-center mb-3">Login</button>
+                <button type="button" 
+                        className="btn btn-light align-self-center mb-3"
+                        onClick={ loginButtonOnClick }>Login</button>
                 
                 {/* Registration text */}
                 <p className='align-self-center'>
