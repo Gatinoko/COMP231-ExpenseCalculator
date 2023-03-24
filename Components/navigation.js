@@ -40,6 +40,13 @@ export default function Navigation() {
                             <a className="nav-link" href="/register">Register</a>
                         )
                     }
+                     {
+                        router.pathname == '/ExpenseDashboard' ? (
+                            <a className="nav-link active" href="/ExpenseDashboard">ExpenseDashboard</a>
+                        ) : (
+                            <a className="nav-link" href="/ExpenseDashboard">ExpenseDashboard</a>
+                        )
+                    }
                 </div>
                 </div>
             </div>
