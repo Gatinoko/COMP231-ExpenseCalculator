@@ -9,7 +9,7 @@ export default function LoginForm() {
     return(
         <>
         <div className='container d-flex justify-content-center'>
-            <div className={`d-flex flex-column p-3 mx-5 shadow rounded ${styles['login-form']}`}>
+            <form className={`d-flex flex-column p-3 mx-5 shadow rounded ${styles['login-form']}`}>
 
                 {/* User login header */}
                 <div className='mb-3'>
@@ -23,7 +23,8 @@ export default function LoginForm() {
                     <input type="email" 
                         className="form-control" 
                         id="exampleFormControlInput1" 
-                        placeholder="name@example.com" />
+                        placeholder="name@example.com"
+                        required />
                 </div>
 
                 {/* Password input field */}
@@ -33,18 +34,19 @@ export default function LoginForm() {
                     <input type="password" 
                             className="form-control" 
                             id="exampleFormControlInput1" 
-                            placeholder='*******' />
+                            placeholder='*******' 
+                            required />
                 </div>
 
                 {/* Login button */}
-                <button type="button" 
+                <button type="submit" 
                         className="btn btn-light align-self-center mb-3">Login</button>
                 
                 {/* Registration text */}
                 <p className='align-self-center'>
-                    Not registered? Click <u>here</u> and register now.
+                    Not registered? Click <a href='/register'><u>here</u></a> and register now.
                 </p>
-            </div>
+            </form>
         </div>
         </>
     )

@@ -9,8 +9,7 @@ export default function RegistrationForm() {
     return(
         <>
         <div className='container d-flex justify-content-center'>
-            <div className={`d-flex flex-column p-3 mx-5 shadow rounded ${styles['registration-form']}`}>
-
+            <form className={`d-flex flex-column p-3 mx-5 shadow rounded ${styles['registration-form']}`}>
                 {/* User login header */}
                 <div className='mb-3'>
                     <h1>User Registration</h1>
@@ -23,7 +22,8 @@ export default function RegistrationForm() {
                     <input type="email" 
                         className="form-control" 
                         id="exampleFormControlInput1" 
-                        placeholder="name@example.com" />
+                        placeholder="name@example.com" 
+                        required />
                 </div>
 
                 {/* Confirm email address input field */}
@@ -33,7 +33,8 @@ export default function RegistrationForm() {
                     <input type="email" 
                         className="form-control" 
                         id="exampleFormControlInput1" 
-                        placeholder="name@example.com" />
+                        placeholder="name@example.com" 
+                        required />
                 </div>
 
                 {/* Username input field */}
@@ -43,7 +44,8 @@ export default function RegistrationForm() {
                     <input type="text" 
                         className="form-control" 
                         id="exampleFormControlInput1" 
-                        placeholder="NameExample32" />
+                        placeholder="NameExample32" 
+                        required />
                 </div>
 
                 {/* Password input field */}
@@ -53,18 +55,19 @@ export default function RegistrationForm() {
                     <input type="password" 
                             className="form-control" 
                             id="exampleFormControlInput1" 
-                            placeholder='*******' />
+                            placeholder='*******' 
+                            required />
                 </div>
 
                 {/* Login button */}
-                <button type="button" 
+                <button type="submit" 
                         className="btn btn-light align-self-center mb-3">Register</button>
                 
                 {/* Registration text */}
                 <p className='align-self-center'>
-                    Already registered? Click <u>here</u> to login.
+                    Already registered? Click <a href='/register'><u>here</u></a> to login.
                 </p>
-            </div>
+            </form>
         </div>
         </>
     )
