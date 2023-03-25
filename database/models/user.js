@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Method to validate user password on login
-UserSchema.methods.isValidPassword = async (password) => {
+UserSchema.methods.isValidPassword = function(password) {
     const user = this
     const compare = (password === user.password)
     return compare
