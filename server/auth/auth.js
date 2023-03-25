@@ -10,8 +10,7 @@ exports.loginAuth = (req, res) => {
         async (err, user, info) => {
             try {
                 if (err || !user) {
-                    //const error = new Error('An error has occurred.')
-                    return res.json('An unexpected error has occurred.')
+                    return res.json({ error: err })
                 }
                 req.login(
                     user, 

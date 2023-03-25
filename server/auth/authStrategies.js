@@ -36,15 +36,13 @@ passport.use(
         async (email, password, done) => {
             try {
                 const user = await Users.findOne({ email });
-        
                 if (!user) {
-                    return done(null, false, { message: 'Email not registered.' });
+                    return done('Email not registered', false);
                 }
-          
+
                 const validate = user.isValidPassword(password);
-                
                 if (!validate) {
-                    return done(null, false, { message: 'Wrong password.' });
+                    return done('Wrong password', false);
                 }
           
                 return done(null, user, { message: 'Logged in successfully.' });
@@ -57,6 +55,7 @@ passport.use(
 
 // Jwt auth strategy
 passport.use(
+    'jwt',
     new jwtStratery(
         {
             secretOrKey: 'TOP_SECRET',
