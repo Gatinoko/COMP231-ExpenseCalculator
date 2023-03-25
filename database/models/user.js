@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose'),
+userRoles = require('../resources/userRoles')
 
 // Not yet implemented into schema
 const Expenses = {
@@ -9,6 +10,11 @@ const Expenses = {
 
 // User schema
 const UserSchema = new mongoose.Schema({
+    roles: {
+        type: Array,
+        required: true,
+        default: () => { return [ 1000 ] }
+    },
     email: {
         type: String,
         required: true,
