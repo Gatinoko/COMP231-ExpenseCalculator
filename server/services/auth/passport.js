@@ -4,7 +4,7 @@ localStrategy = require('passport-local').Strategy,
 jwtStratery = require('passport-jwt').Strategy,
 extractJwt = require('passport-jwt').ExtractJwt
 
-// Registration auth strategy
+// Registration auth strategy definition
 const localRegistration = new localStrategy(
     {
         usernameField: 'email',
@@ -26,7 +26,7 @@ const localRegistration = new localStrategy(
     }
 )
 
-// Login auth strategy
+// Login auth strategy definition
 const localLogin = new localStrategy(
     {
         usernameField: 'email',
@@ -52,8 +52,7 @@ const localLogin = new localStrategy(
 )
 
 
-// Jwt auth strategy
-
+// Jwt auth strategy definition
 const jwtLogin = new jwtStratery(
     {
         secretOrKey: 'TOP_SECRET',
