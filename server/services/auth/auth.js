@@ -18,7 +18,12 @@ exports.loginAuth = (req, res) => {
                     async (error) => {
                         if (error) return error
 
-                        const formData = { _id: user._id, email: user.email }
+                        const formData = { 
+                            _id: user._id,
+                            roles: user.roles,
+                            username: user.username, 
+                            email: user.email 
+                        }
                         const token = jwt.sign({ user: formData }, 'TOP_SECRET')
 
                         return res.json({ token })
@@ -30,3 +35,6 @@ exports.loginAuth = (req, res) => {
         }
     )(req, res)
 }
+
+// JWT authentication function
+exports.jwtAuth = passport.authenticate('jwt', { session: false })
