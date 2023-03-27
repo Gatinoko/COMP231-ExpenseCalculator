@@ -28,32 +28,32 @@ export default function LoginForm() {
 
                 {/* Email address input field */}
                 <div className="mb-3">
-                    <label htmlFor="exampleFormControlInput1" 
+                    <label htmlFor="emailInput" 
                         className="form-label">Email address</label>
                     <input type="email" 
                         className="form-control" 
-                        id="exampleFormControlInput1" 
+                        id="emailInput" 
                         placeholder="name@example.com"
-                        required
-                        onChange={(e) => { setEmail(e.target.value) }} />
+                        name='email'
+                        required />
                 </div>
 
                 {/* Password input field */}
                 <div className="mb-3">
-                    <label htmlFor="exampleFormControlInput1" 
+                    <label htmlFor="passwordInput" 
                             className="form-label">Password</label>
                     <input type="password" 
                             className="form-control" 
-                            id="exampleFormControlInput1" 
-                            placeholder='*******' 
-                            required
-                            onChange={(e) => { setPassword(e.target.value) }} />
+                            id="passwordInput" 
+                            placeholder='*******'
+                            name='password' 
+                            required />
                 </div>
 
                 {/* Login button */}
-                <button type="button" 
-                        className="btn btn-light align-self-center mb-3"
-                        onClick={ loginButtonOnClick }>Login</button>
+                <button type="submit"
+                        formMethod='POST' 
+                        className="btn btn-light align-self-center mb-3">Login</button>
                 
                 {/* Registration text */}
                 <p className='align-self-center'>
