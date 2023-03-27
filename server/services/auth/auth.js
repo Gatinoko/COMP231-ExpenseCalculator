@@ -5,7 +5,8 @@ jwt = require('jsonwebtoken')
 exports.registrationAuth = passport.authenticate('registration', { session: false })
 
 // Login authentication function
-exports.loginAuth = (req, res) => { passport.authenticate('login', 
+exports.loginAuth = async (req, res) => { 
+    passport.authenticate('login',
         async (err, user, info) => {
             try {
                 if (err || !user) {
@@ -21,6 +22,7 @@ exports.loginAuth = (req, res) => { passport.authenticate('login',
                             email: user.email 
                         }
                         const token = jwt.sign({ user: formData }, 'TOP_SECRET')
+                        res.cookie('token', token, { httpOnly: true })
                         return res.json({ token })
                     }
                 )

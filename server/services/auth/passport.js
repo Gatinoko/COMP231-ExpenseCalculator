@@ -2,7 +2,8 @@ const Users = require('../../../database/models/user'),
 passport = require('passport'),
 localStrategy = require('passport-local').Strategy,
 jwtStratery = require('passport-jwt').Strategy,
-extractJwt = require('passport-jwt').ExtractJwt
+cookieHelper = require('../../utils/cookieHelper'),
+nextRouter = require("next/router")
 
 // Registration auth strategy definition
 const localRegistration = new localStrategy(
@@ -51,16 +52,17 @@ const localLogin = new localStrategy(
     }
 )
 
-
 // Jwt auth strategy definition
 const jwtLogin = new jwtStratery(
     {
         secretOrKey: 'TOP_SECRET',
-        jwtFromRequest: extractJwt.fromUrlQueryParameter('secret_token')
+        jwtFromRequest: (req) => {
+            return cookieHelper.geReqCookieValueByName(req, 'token')
+        }
     },
-    async (token, done) => {
+    async (jwtPayload, done) => {
         try {
-            return done(null, token.user)
+            return done(null, jwtPayload.user)
         } catch (error) {
             done(error)
         }
