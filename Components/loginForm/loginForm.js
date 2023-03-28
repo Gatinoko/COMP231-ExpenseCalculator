@@ -1,20 +1,17 @@
 /*
     Login form component
 */
+// React/Next imports
+import { useRouter } from 'next/router';
 
 // CSS imports
-import { useState } from 'react'
 import styles from './loginForm.module.css'
 
-export default function LoginForm() {
+export default function LoginForm({ valid, alertMessage }) {
 
-    const [getEmail, setEmail] = useState();
-    const [getPassword, setPassword] = useState();
-
-    function loginButtonOnClick() {
-        console.log(getEmail)
-        console.log(getPassword)
-    }
+    // Converts valid parameter from string to bool
+    let validBool = undefined;
+    if (valid !== undefined) { validBool = !(/false/i).test(valid) }
 
     return(
         <>
@@ -59,6 +56,17 @@ export default function LoginForm() {
                 <p className='align-self-center'>
                     Not registered? Click <a href='/register'><u>here</u></a> and register now.
                 </p>
+
+                {/* Alert message */}
+                {
+                    validBool === false ? (
+                        <div id='AlertBox' className="alert alert-warning" role="alert">
+                            {alertMessage}
+                        </div>
+                    ) : (
+                        <div id='AlertBox' role="alert"></div>
+                    )
+                }
             </form>
         </div>
         </>
