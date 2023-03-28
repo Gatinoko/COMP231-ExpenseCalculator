@@ -2,8 +2,7 @@ const Users = require('../../../database/models/user'),
 passport = require('passport'),
 localStrategy = require('passport-local').Strategy,
 jwtStratery = require('passport-jwt').Strategy,
-cookieHelper = require('../../utils/cookieHelper'),
-nextRouter = require("next/router")
+cookieHelper = require('../../utils/cookieHelper')
 
 // Registration auth strategy definition
 const localRegistration = new localStrategy(
@@ -21,31 +20,6 @@ const localRegistration = new localStrategy(
             }
             const user = await Users.create(formData);
             return done(null, user);
-        } catch (error) {
-            done(error);
-        }
-    }
-)
-
-// Login auth strategy definition
-const localLogin = new localStrategy(
-    {
-        usernameField: 'email',
-        passwordField: 'password'
-    },
-    async (email, password, done) => {
-        try {
-            const user = await Users.findOne({ email });
-            if (!user) {
-                return done('Email not registered', false);
-            }
-
-            const validate = user.isValidPassword(password);
-            if (!validate) {
-                return done('Wrong password', false);
-            }
-        
-            return done(null, user, { message: 'Logged in successfully.' });
         } catch (error) {
             done(error);
         }
@@ -71,5 +45,4 @@ const jwtLogin = new jwtStratery(
 
 
 passport.use('registration', localRegistration)
-passport.use('login', localLogin)
 passport.use('jwt', jwtLogin)

@@ -1,11 +1,13 @@
 
 const controller = require('./routerController'),
-auth = require('./services/auth/auth')
+auth = require('../services/auth/auth'),
+middleware = require('./middleware')
+jwt = require('jsonwebtoken')
 
 
 module.exports =  function router(server, handle) {
 
-    require('./services/auth/passport')
+    require('../services/auth/passport')
 
     /* 
         API routes 
@@ -16,13 +18,16 @@ module.exports =  function router(server, handle) {
         (req, res) => { return controller.getUser(req, res) }) // GET user
 
     /*
-        Authentication routes for registration and login
+        Authentication routes for registration, login, and logout
     */
     server.post('/register',
         auth.registrationAuth, 
         (req, res) => { return controller.postUserRegistration(req, res) })
     server.post('/login',
-        (req, res) => { auth.loginAuth(req, res) })
+        middleware.loginMiddleware,
+        (req, res) => { return controller.postUserLogin(req, res) })
+    server.delete('/logout', 
+        (req, res) => { return controller.getUserLogout(req, res) })
 
     /*
         Secured routes

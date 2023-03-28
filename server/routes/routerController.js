@@ -1,4 +1,7 @@
-const Users = require('../database/models/user')
+const Users = require('../../database/models/user'),
+auth = require('../services/auth/auth'),
+jwt = require('jsonwebtoken')
+
 
 /*
     User type controllers
@@ -37,3 +40,18 @@ exports.postUserRegistration = async (req, res) => {
         res.json({ error: 'Error while registering.' })
     }
 }
+
+exports.postUserLogin = async (req, res) => {
+    if (req.valid === true) {
+        const token = jwt.sign({ user: req.user }, 'TOP_SECRET')
+        res.cookie('token', token, { httpOnly: true })
+        res.json(req.user)
+    }
+    res.json(req.message)
+}
+
+exports.getUserLogout = async (req, res) => {
+    res.clearCookie("jwt");
+    res.redirect("/");
+}
+

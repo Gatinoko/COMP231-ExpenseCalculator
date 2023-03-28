@@ -2,7 +2,7 @@ const next = require('next'),
 express = require('express'),
 connectMongodb = require('../database/connection'),
 bodyParser = require('body-parser'),
-router = require('./router')
+router = require('./routes/router')
 
 /*
   Server configuration
