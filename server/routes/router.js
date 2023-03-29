@@ -5,7 +5,7 @@ middleware = require('./middleware')
 jwt = require('jsonwebtoken')
 
 
-module.exports =  function router(server, handle) {
+function initializeRouter(server, handle) {
 
     require('../services/auth/passport')
 
@@ -39,3 +39,5 @@ module.exports =  function router(server, handle) {
     // Route for all static HTML pages
     server.get('*', (req, res) => { return handle(req, res) })
 }
+
+module.exports = initializeRouter

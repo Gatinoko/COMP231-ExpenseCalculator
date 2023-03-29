@@ -2,7 +2,7 @@ const next = require('next'),
 express = require('express'),
 connectMongodb = require('../database/connection'),
 bodyParser = require('body-parser'),
-router = require('./routes/router')
+initializeRouter = require('./routes/router')
 
 /*
   Server configuration
@@ -25,7 +25,7 @@ app.prepare()
   */
   const server = express()
   server.use(bodyParser.urlencoded({ extended: false }))
-  router(server, handle)
+  initializeRouter(server, handle)
   server.listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`)
   })
