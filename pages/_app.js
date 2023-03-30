@@ -4,17 +4,24 @@ import '../styles/globals.css'
 
 // Next/React imports
 import Head from 'next/head'
+import NextApp from 'next/app'
 import { useEffect, useRef } from 'react'
 
 // Component imports
-import Navigation from '../Components/navigation'
+import Navigation from '@/Components/navigation'
 import { Toast, ToastTypes } from '@/Components/toast/toast'
 
-export default function App({ Component, pageProps }) {
+// Extra imports
+import { Jwt } from 'jsonwebtoken'
+
+/*
+  Application's entry point component
+*/
+export default function App({ Component, pageProps, serverProps }) {
 
   // Toast component reference
   const toastRef = useRef()
-
+  
   // Bootstrap js functionalities import
   useEffect(() => {
     require('bootstrap/dist/js/bootstrap.bundle.min.js')
@@ -35,8 +42,25 @@ export default function App({ Component, pageProps }) {
       </div>
 
       {/* Page content */}
-      <Navigation />
-      <Component {...pageProps} toast={toastRef} />
+      <Navigation serverProps={ serverProps } />
+      <Component { ...pageProps } />
     </>
   )
 }
+
+/*
+  getInitialProps function
+*/
+App.getInitialProps = async (appContext) => {
+
+  // App props instantiation
+  const appProps = await NextApp.getInitialProps(appContext)
+
+  // Get server data and create serverProps object for component use
+  const cookies = appContext.ctx.req.cookies
+  const jwtTokenContent = jwt.decode(cookies.token)
+  const currentPath = appContext.router.pathname
+  const serverProps = { jwtTokenContent, currentPath }
+
+  return { ...appProps, serverProps };
+};
