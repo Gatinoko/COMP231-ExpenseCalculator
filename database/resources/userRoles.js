@@ -1,6 +1,6 @@
-const userRoles = {
+exports.userRoles = {
     'User': 1000,
     'Admin': 1337
 }
 
-module.exports = userRoles
+exports.userRolesKeys = Object.keys(this.userRoles)
