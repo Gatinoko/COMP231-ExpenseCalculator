@@ -26,7 +26,7 @@ function initializeRouter(server, handle) {
     server.post('/login',
         middleware.loginMiddleware,
         (req, res) => { return controller.postUserLogin(req, res) })
-    server.delete('/logout', 
+    server.get('/logout', 
         (req, res) => { return controller.getUserLogout(req, res) })
 
     /*
