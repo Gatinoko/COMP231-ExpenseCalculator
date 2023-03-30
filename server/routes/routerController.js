@@ -41,6 +41,7 @@ exports.postUserRegistration = async (req, res) => {
     }
 }
 
+// POST: http://localhost:4000/login
 exports.postUserLogin = async (req, res) => {
     const valid = req.valid
     const message = req.loginMessage
@@ -60,6 +61,7 @@ exports.postUserLogin = async (req, res) => {
     }
 }
 
+// GET: http://localhost:4000/logout
 exports.getUserLogout = async (req, res) => {
     res.clearCookie('token')
     res.redirect('/')
