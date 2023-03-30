@@ -1,13 +1,39 @@
-/*
-    Header component implementation
-*/
-
 // Next/React imports
-import { useRouter } from "next/router"
+import { useContext, useEffect } from "react";
 
-export default function Navigation() {
-    const router = useRouter();
-    console.log(router.pathname);
+// Component imports
+import cookieHelper from "@/server/utils/cookieHelper"
+
+/*
+    Component functions and variables
+*/
+const loggedOutNav = [
+    { id: 0, name: 'Login', href: '/login'},
+    { id: 1, name: 'Register', href: '/register'}
+]
+
+const loggedInNav = [
+    { id: 0, name: 'Logout', href: '/logout'}
+]
+
+function configureNavigationBarList(auth) {
+    const navigation = auth === false ? loggedOutNav : loggedInNav
+    return navigation
+}
+
+function checkIfUserAuthenticated(serverProps) {
+    const authenticated = serverProps.jwtTokenContent === null ? false : true
+    return authenticated
+} 
+
+/*
+    Navigation component implementation
+*/
+export default function Navigation({ serverProps }) {
+
+    let auth = checkIfUserAuthenticated(serverProps)
+    let navArray = configureNavigationBarList(auth)
+
     return(
         <>
         <nav className="navbar navbar-expand-lg bg-light shadow-sm">
@@ -24,23 +50,22 @@ export default function Navigation() {
                 {/* Mobile collapsable list */}
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
 
-                {/* Navigation bar list */}
-                <div className="navbar-nav">
-                    {
-                        router.pathname == '/login' ? (
-                            <a className="nav-link active" aria-current="page" href="/login">Login</a>
-                        ) : (
-                            <a className="nav-link" aria-current="page" href="/login">Login</a>
-                        )
-                    }
-                    {
-                        router.pathname == '/register' ? (
-                            <a className="nav-link active" href="/register">Register</a>
-                        ) : (
-                            <a className="nav-link" href="/register">Register</a>
-                        )
-                    }
-                </div>
+                    {/* Navigation bar list */}
+                    <div className="navbar-nav">
+                        {
+                            navArray.map((route) => (
+                                serverProps.currentPath === route.href ? (
+                                    <a key={route.id} className="nav-link active" aria-current="page" href={route.href}>
+                                        {route.name}
+                                    </a>
+                                ) : (
+                                    <a key={route.id} className="nav-link" aria-current="page" href={route.href}>
+                                        {route.name}
+                                    </a>
+                                )
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
