@@ -40,7 +40,7 @@ export default function Navigation({ serverProps }) {
             <div className="container-fluid">
 
                 {/* Navbar brand element */}
-                <a className="navbar-brand" href="/home"><h2>Navbar</h2></a>
+                <a className="navbar-brand" href="/"><h2>Navbar</h2></a>
 
                 {/* Hamburger icon */}
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
