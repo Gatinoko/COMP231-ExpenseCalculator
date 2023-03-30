@@ -43,9 +43,16 @@ exports.postUserRegistration = async (req, res) => {
 
 exports.postUserLogin = async (req, res) => {
     const valid = req.valid
-    const message = req.message
+    const message = req.loginMessage
     if (valid === true) {
-        const token = jwt.sign({ user: req.user }, 'TOP_SECRET')
+        const token = jwt.sign(
+            { 
+                user: req.user.username,
+                email: req.user.email,
+                roles: req.user.roles 
+            }, 
+            'TOP_SECRET'
+        )
         res.cookie('token', token, { httpOnly: true })
         res.redirect('/dashboard')
     } else {
@@ -54,7 +61,7 @@ exports.postUserLogin = async (req, res) => {
 }
 
 exports.getUserLogout = async (req, res) => {
-    res.clearCookie("jwt");
+    res.clearCookie('jwt');
     res.redirect("/");
 }
 
