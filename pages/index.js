@@ -1,13 +1,15 @@
-// Next/React imports
-import { useEffect } from 'react';
-import Router from "next/router"
+// CSS imports
+import styles from '../styles/index.module.css'
 
+/*
+    Index page
+*/
 export default function Index() {
-
-  // Code to redirect the user to the home page upon entering
-  useEffect(() => {
-    Router.push("/home");
-  })
-
-  return <></>
+  return (
+    <>
+    <main className={'container'}>
+      <h1>Expense Calculator Application</h1>
+    </main>
+    </>
+  )
 }

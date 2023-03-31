@@ -5,7 +5,12 @@
 // CSS imports
 import styles from './registrationForm.module.css'
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ valid, alertMessage, messageType }) {
+
+    // Converts valid parameter from string to bool
+    let validBool = undefined;
+    if (valid !== undefined) { validBool = !(/false/i).test(valid) }
+    
     return(
         <>
         <div className='container d-flex justify-content-center'>
@@ -22,7 +27,8 @@ export default function RegistrationForm() {
                     <input type="email" 
                         className="form-control" 
                         id="exampleFormControlInput1" 
-                        placeholder="name@example.com" 
+                        placeholder="name@example.com"
+                        name="email" 
                         required />
                 </div>
 
@@ -33,7 +39,8 @@ export default function RegistrationForm() {
                     <input type="email" 
                         className="form-control" 
                         id="exampleFormControlInput1" 
-                        placeholder="name@example.com" 
+                        placeholder="name@example.com"
+                        name="confirmEmail" 
                         required />
                 </div>
 
@@ -44,7 +51,8 @@ export default function RegistrationForm() {
                     <input type="text" 
                         className="form-control" 
                         id="exampleFormControlInput1" 
-                        placeholder="NameExample32" 
+                        placeholder="NameExample32"
+                        name="username" 
                         required />
                 </div>
 
@@ -55,18 +63,31 @@ export default function RegistrationForm() {
                     <input type="password" 
                             className="form-control" 
                             id="exampleFormControlInput1" 
-                            placeholder='*******' 
+                            placeholder='*******'
+                            name="password" 
                             required />
                 </div>
 
                 {/* Login button */}
-                <button type="submit" 
+                <button type="submit"
+                        formMethod='POST' 
                         className="btn btn-light align-self-center mb-3">Register</button>
                 
                 {/* Registration text */}
                 <p className='align-self-center'>
                     Already registered? Click <a href='/register'><u>here</u></a> to login.
                 </p>
+
+                {/* Alert message */}
+                {
+                    validBool === false ? (
+                        <div id='AlertBox' className={`alert alert-${messageType}`} role="alert">
+                            {alertMessage}
+                        </div>
+                    ) : (
+                        <div id='AlertBox' role="alert"></div>
+                    )
+                }
             </form>
         </div>
         </>
