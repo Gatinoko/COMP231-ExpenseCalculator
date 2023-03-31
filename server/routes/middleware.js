@@ -12,20 +12,20 @@ exports.loginMiddleware = async (req, res, next) => {
     const user = await Users.findOne({ email })
     if (user === null) {
         req.valid = false
-        req.loginMessage = 'Email not registered'
+        req.alertMessage = 'Email not registered'
         req.messageType = 'warning'
         next() 
     }
     else if (!user.isValidPassword(password)) {
         req.valid = false
-        req.loginMessage = 'Wrong password'
+        req.alertMessage = 'Wrong password'
         req.messageType = 'danger'
         next()
     }
     else {
         req.valid = true
         req.user = user
-        req.loginMessage = 'Successfully logged in'
+        req.alertMessage = 'Successfully logged in'
         req.messageType = 'success'
         next()
     }
@@ -42,19 +42,19 @@ exports.registrationMidleware = async (req, res, next) => {
     // If an email or username already exists, show error, otherwise proceed with registration
     if (userEmail !== null) {
         req.valid = false
-        req.registrationMessage = 'Email already registered'
+        req.alertMessage = 'Email already registered'
         req.messageType = 'danger'
         next()
     } 
     else if (userUsername !== null){
         req.valid = false
-        req.registrationMessage = 'Username already exists'
+        req.alertMessage = 'Username already exists'
         req.messageType = 'warning'
         next()
     }
     else {
         req.valid = true
-        req.registrationMessage = 'Successfully registered'
+        req.alertMessage = 'Successfully registered'
         req.messageType = 'success'
         next()
     }
@@ -80,7 +80,7 @@ verifyRolesMiddleware = async (req, res, next, allowedRoles) => {
     }
     else {
         req.validRoles = false
-        req.verifyRolesMessage = 'Not enough roles'
+        req.alertMessage = 'Not enough roles'
         next()
     }
     

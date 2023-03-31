@@ -32,7 +32,7 @@ exports.getUser = async (req, res) => {
 // POST: http://localhost:4000/register
 exports.postUserRegistration = async (req, res) => {
     const valid = req.valid
-    const message = req.registrationMessage
+    const message = req.alertMessage
     const messageType = req.messageType
     if (valid === true) {
         const formData = {
@@ -51,7 +51,7 @@ exports.postUserRegistration = async (req, res) => {
 // POST: http://localhost:4000/login
 exports.postUserLogin = async (req, res) => {
     const valid = req.valid
-    const message = req.loginMessage
+    const message = req.alertMessage
     const messageType = req.messageType
     if (valid === true) {
         const token = jwt.sign(
