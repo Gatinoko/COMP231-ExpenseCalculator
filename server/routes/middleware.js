@@ -13,17 +13,20 @@ exports.loginMiddleware = async (req, res, next) => {
     if (user === null) {
         req.valid = false
         req.loginMessage = 'Email not registered'
+        req.messageType = 'warning'
         next() 
     }
     else if (!user.isValidPassword(password)) {
         req.valid = false
         req.loginMessage = 'Wrong password'
+        req.messageType = 'danger'
         next()
     }
     else {
         req.valid = true
         req.user = user
         req.loginMessage = 'Successfully logged in'
+        req.messageType = 'success'
         next()
     }
 }
@@ -40,16 +43,19 @@ exports.registrationMidleware = async (req, res, next) => {
     if (userEmail !== null) {
         req.valid = false
         req.registrationMessage = 'Email already registered'
+        req.messageType = 'danger'
         next()
     } 
     else if (userUsername !== null){
         req.valid = false
         req.registrationMessage = 'Username already exists'
+        req.messageType = 'warning'
         next()
     }
     else {
         req.valid = true
         req.registrationMessage = 'Successfully registered'
+        req.messageType = 'success'
         next()
     }
 }

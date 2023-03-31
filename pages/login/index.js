@@ -20,7 +20,9 @@ export default function Login({ query }) {
     return(
         <>
         <main className={'container my-5'}>
-            <LoginForm valid={query.valid} alertMessage={query.message}/>
+            <LoginForm valid={query.valid} 
+                alertMessage={query.message}
+                messageType={query.messageType}/>
         </main>
         </>
     )

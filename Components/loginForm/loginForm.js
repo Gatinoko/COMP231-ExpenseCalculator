@@ -7,7 +7,7 @@ import styles from './loginForm.module.css'
 /*
     Login form component
 */
-export default function LoginForm({ valid, alertMessage }) {
+export default function LoginForm({ valid, alertMessage, messageType }) {
 
     // Converts valid parameter from string to bool
     let validBool = undefined;
@@ -60,7 +60,7 @@ export default function LoginForm({ valid, alertMessage }) {
                 {/* Alert message */}
                 {
                     validBool === false ? (
-                        <div id='AlertBox' className="alert alert-warning" role="alert">
+                        <div id='AlertBox' className={`alert alert-${messageType}`} role="alert">
                             {alertMessage}
                         </div>
                     ) : (

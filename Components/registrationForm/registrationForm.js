@@ -5,7 +5,7 @@
 // CSS imports
 import styles from './registrationForm.module.css'
 
-export default function RegistrationForm({ valid, alertMessage }) {
+export default function RegistrationForm({ valid, alertMessage, messageType }) {
 
     // Converts valid parameter from string to bool
     let validBool = undefined;
@@ -81,7 +81,7 @@ export default function RegistrationForm({ valid, alertMessage }) {
                 {/* Alert message */}
                 {
                     validBool === false ? (
-                        <div id='AlertBox' className="alert alert-warning" role="alert">
+                        <div id='AlertBox' className={`alert alert-${messageType}`} role="alert">
                             {alertMessage}
                         </div>
                     ) : (

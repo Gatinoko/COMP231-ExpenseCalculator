@@ -33,6 +33,7 @@ exports.getUser = async (req, res) => {
 exports.postUserRegistration = async (req, res) => {
     const valid = req.valid
     const message = req.registrationMessage
+    const messageType = req.messageType
     if (valid === true) {
         const formData = {
             email: req.body.email,
@@ -40,10 +41,10 @@ exports.postUserRegistration = async (req, res) => {
             password: req.body.password
         }
         const user = await Users.create(formData);
-        return res.redirect('/login?' + `valid=${valid}&message=${message}`)
+        return res.redirect('/register?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
     }
     else {
-        res.redirect('/register?' + `valid=${valid}&message=${message}`)
+        res.redirect('/register?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
     }
 }
 
@@ -51,6 +52,7 @@ exports.postUserRegistration = async (req, res) => {
 exports.postUserLogin = async (req, res) => {
     const valid = req.valid
     const message = req.loginMessage
+    const messageType = req.messageType
     if (valid === true) {
         const token = jwt.sign(
             { 
@@ -63,7 +65,7 @@ exports.postUserLogin = async (req, res) => {
         res.cookie('token', token, { httpOnly: true })
         res.redirect('/dashboard')
     } else {
-        res.redirect('/login?' + `valid=${valid}&message=${message}`)
+        res.redirect('/login?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
     }
 }
 
