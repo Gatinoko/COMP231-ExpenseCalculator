@@ -1,7 +1,15 @@
+// Component imports
+import ExpenseDashboardList from "@/Components/expenseDashboardList/ExpenseDashboardList";
+
+/*
+    Expense dashboard page
+*/
 export default function Dashboard() {
     return(
         <>
-        <p>dashboard goes here</p>
+        <main className={'container my-5'}>
+            <ExpenseDashboardList />
+        </main>
         </>
     )
 }

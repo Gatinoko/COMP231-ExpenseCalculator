@@ -3,7 +3,7 @@
 */
 
 // CSS imports
-import styles from './ExpenseDashboardList.module.css'
+import styles from './expenseDashboardList.module.css'
 
 export default function ExpenseDashboardList() {
     return(
