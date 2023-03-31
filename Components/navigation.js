@@ -13,7 +13,8 @@ const loggedOutNav = [
 ]
 
 const loggedInNav = [
-    { id: 0, name: 'Logout', href: '/logout'}
+    { id: 0, name: 'Logout', href: '/logout'},
+    { id: 1, name: 'Expense Dashboard', href: '/dashboard'}
 ]
 
 function configureNavigationBarList(auth) {
