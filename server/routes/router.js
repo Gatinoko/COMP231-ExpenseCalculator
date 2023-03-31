@@ -21,7 +21,7 @@ function initializeRouter(server, handle) {
         Authentication routes for registration, login, and logout
     */
     server.post('/register',
-        auth.registrationAuth, 
+        middleware.registrationMidleware, 
         (req, res) => { return controller.postUserRegistration(req, res) })
     server.post('/login',
         middleware.loginMiddleware,

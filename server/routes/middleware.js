@@ -28,6 +28,32 @@ exports.loginMiddleware = async (req, res, next) => {
     }
 }
 
+exports.registrationMidleware = async (req, res, next) => {
+
+    // Searches for users with the provided email and username
+    const email = req.body.email
+    const username = req.body.username 
+    const userEmail = await Users.findOne({ email })
+    const userUsername = await Users.findOne({ username })
+
+    // If an email or username already exists, show error, otherwise proceed with registration
+    if (userEmail !== null) {
+        req.valid = false
+        req.registrationMessage = 'Email already registered'
+        next()
+    } 
+    else if (userUsername !== null){
+        req.valid = false
+        req.registrationMessage = 'Username already exists'
+        next()
+    }
+    else {
+        req.valid = true
+        req.registrationMessage = 'Successfully registered'
+        next()
+    }
+}
+
 exports.verifyUserMiddleware = async (req, res, next) => {
     const allowedRoles = [ userRoles.Admin ]
     verifyRolesMiddleware(req, res, next, allowedRoles)

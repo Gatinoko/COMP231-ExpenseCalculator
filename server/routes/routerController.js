@@ -31,13 +31,19 @@ exports.getUser = async (req, res) => {
 
 // POST: http://localhost:4000/register
 exports.postUserRegistration = async (req, res) => {
-    try {
-        res.json({
-            message: 'Registration successful.',
-            user: req.user
-        })
-    } catch(error) {
-        res.json({ error: 'Error while registering.' })
+    const valid = req.valid
+    const message = req.registrationMessage
+    if (valid === true) {
+        const formData = {
+            email: req.body.email,
+            username: req.body.username,
+            password: req.body.password
+        }
+        const user = await Users.create(formData);
+        return res.redirect('/login?' + `valid=${valid}&message=${message}`)
+    }
+    else {
+        res.redirect('/register?' + `valid=${valid}&message=${message}`)
     }
 }
 
