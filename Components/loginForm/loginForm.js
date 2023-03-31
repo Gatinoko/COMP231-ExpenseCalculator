@@ -1,12 +1,12 @@
-/*
-    Login form component
-*/
 // React/Next imports
 import { useRouter } from 'next/router';
 
 // CSS imports
 import styles from './loginForm.module.css'
 
+/*
+    Login form component
+*/
 export default function LoginForm({ valid, alertMessage }) {
 
     // Converts valid parameter from string to bool
