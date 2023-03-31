@@ -24,7 +24,7 @@ export default function ExpenseCard({ expenseName, expenseType, expenseCost, exp
                     align-items-center">
 
                 {/* Title */}
-                <h3 className="my-0">{ expenseName }</h3>
+                <h4 className="my-0">{ expenseName }</h4>
 
                 {/* Actions */}
                 <div id="Actions"
@@ -50,7 +50,7 @@ export default function ExpenseCard({ expenseName, expenseType, expenseCost, exp
                 {/* Bold text */}
                 <div className="d-flex
                         flex-column
-                        gap-2">
+                        gap-1">
                     <b><p className="my-0">Expense type:</p></b>
                     <b><p className="my-0">Expense cost:</p></b>
                     <b><p className="my-0">Expense date:</p></b>
@@ -59,7 +59,7 @@ export default function ExpenseCard({ expenseName, expenseType, expenseCost, exp
                 {/* Value text */}
                 <div className="d-flex
                         flex-column
-                        gap-2">
+                        gap-1">
                     <p id="ExpenseTypeValue" 
                         className="my-0">{ expenseType }</p>
                     <p id="ExpenseCostValue"

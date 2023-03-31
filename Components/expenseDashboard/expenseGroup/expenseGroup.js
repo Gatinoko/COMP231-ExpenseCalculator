@@ -16,7 +16,7 @@ export default function ExpenseDashboardGroup({ children }) {
                 gap-3`}>
 
             {/* Expense group title */}
-            <h2>Expense group 1</h2>
+            <h3>Expense group 1</h3>
 
             {/* Expense cards */}
             <div className="d-flex 
