@@ -1,6 +1,7 @@
 // CSS imports
 import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 // Next/React imports
 import Head from 'next/head'
