@@ -42,8 +42,10 @@ export default function App({ Component, pageProps, serverProps }) {
         <Toast ref={toastRef}/>
       </div>
 
-      {/* Page content */}
+      {/* Navigation bar */}
       <Navigation serverProps={ serverProps } />
+
+      {/* Main content router outlet */}
       <Component { ...pageProps } />
     </>
   )
