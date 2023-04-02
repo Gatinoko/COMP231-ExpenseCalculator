@@ -64,7 +64,7 @@ exports.postUserLogin = async (req, res) => {
             'TOP_SECRET'
         )
         res.cookie('token', token, { httpOnly: true })
-        res.redirect(`/dashboard/${_id}`)
+        res.redirect(`/dashboard/${req.user._id}`)
     } else {
         res.redirect('/login?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
     }

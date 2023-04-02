@@ -12,7 +12,7 @@ const loggedOutNav = [
     { id: 1, name: 'Register', href: '/register'}
 ]
 
-const loggedInNav = [
+let loggedInNav = [
     { id: 0, name: 'Expense Dashboard', href: '/dashboard'},
     { id: 1, name: 'Logout', href: '/logout'}
 ]
@@ -24,6 +24,10 @@ function configureNavigationBarList(auth) {
 
 function checkIfUserAuthenticated(serverProps) {
     const authenticated = serverProps.jwtTokenContent === null ? false : true
+    if (authenticated === true) {
+        const userId = serverProps.jwtTokenContent._id
+        loggedInNav[0].href = `/dashboard/${userId}`
+    }
     return authenticated
 } 
 
