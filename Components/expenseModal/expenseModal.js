@@ -1,11 +1,10 @@
-/*
-    Login form component
-*/
-
 // CSS imports
-import styles from './AddExpenseForm.module.css'
+import styles from './expenseModal.module.css'
 
-export default function AddExpenseForm() {
+/*
+    Expense modal component
+*/
+export default function ExpenseModal() {
     return(
         <>
         <div className='container d-flex justify-content-center'>
