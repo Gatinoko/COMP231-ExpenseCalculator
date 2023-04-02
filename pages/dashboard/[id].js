@@ -2,6 +2,10 @@
 import ExpenseGroup from "@/Components/expenseDashboard/expenseGroup/expenseGroup";
 import ExpenseCard from "@/Components/expenseDashboard/expenseCard/expenseCard";
 
+// Extra imports
+import { getUser } from "@/server/utils/fetchHelper"
+
+
 /*
     Expense dashboard page
 */
@@ -132,4 +136,13 @@ export default function Dashboard() {
         </main>
         </>
     )
+}
+
+/*
+    getServerSideProps funcion
+*/
+export async function getServerSideProps(context) {
+    const userId = context.params.id
+    const user = await getUser(userId)
+    return { props: { userExpenses: user.expenses } }
 }

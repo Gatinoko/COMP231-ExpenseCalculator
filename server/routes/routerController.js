@@ -56,6 +56,7 @@ exports.postUserLogin = async (req, res) => {
     if (valid === true) {
         const token = jwt.sign(
             { 
+                _id: req.user._id,
                 user: req.user.username,
                 email: req.user.email,
                 roles: req.user.roles 
@@ -63,7 +64,7 @@ exports.postUserLogin = async (req, res) => {
             'TOP_SECRET'
         )
         res.cookie('token', token, { httpOnly: true })
-        res.redirect('/dashboard')
+        res.redirect(`/dashboard/${_id}`)
     } else {
         res.redirect('/login?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
     }

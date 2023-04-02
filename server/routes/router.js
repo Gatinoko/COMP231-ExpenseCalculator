@@ -32,7 +32,7 @@ function initializeRouter(server, handle) {
     /*
         Secured routes
     */
-    server.get('/dashboard',
+    server.get('/dashboard/:_id',
         auth.jwtAuth, 
         (req, res) => { return handle(req, res) })
 
