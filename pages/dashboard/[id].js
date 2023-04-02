@@ -1,6 +1,3 @@
-// CSS imports
-import styles from "./dashboard.module.css"
-
 // Component imports
 import ExpenseGroup from "@/Components/expenseDashboard/expenseGroup/expenseGroup";
 import ExpenseCard from "@/Components/expenseDashboard/expenseCard/expenseCard";
