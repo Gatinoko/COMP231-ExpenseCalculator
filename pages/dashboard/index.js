@@ -10,11 +10,14 @@ export default function Dashboard() {
         <>
         <main className="page-content-wrapper">
             <div className="d-flex
-                            flex-row">
+                            flex-row
+                            h-100">
 
                 {/* Sidebar navigation */}
                 <nav className="d-flex
-                                flex-column" style={{backgroundColor: 'blue'}}>  
+                                flex-column
+                                p-3" 
+                     style={{backgroundColor: 'blue'}}>  
 
                     {/* Item list */}
                     <ul class="nav 
@@ -61,7 +64,9 @@ export default function Dashboard() {
 
                 {/* Main content container */}
                 <main className="d-flex
-                                flex-column">
+                                flex-column
+                                p-4
+                                w-100">
 
                     {/* Section header */}
                     <div class="d-flex 

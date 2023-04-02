@@ -37,7 +37,7 @@ export default function Navigation({ serverProps }) {
 
     return(
         <>
-        <nav className="navbar navbar-expand-lg bg-light shadow-sm">
+        <nav className="navbar navbar-expand-lg bg-light shadow-sm position-absolute w-100">
             <div className="container-fluid">
 
                 {/* Navbar brand element */}

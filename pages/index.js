@@ -7,8 +7,10 @@ import styles from '../styles/index.module.css'
 export default function Index() {
   return (
     <>
-    <main className={'container'}>
-      <h1>Expense Calculator Application</h1>
+    <main className="page-content-wrapper">
+      <div className="pt-4">
+        <h1>Expense Calculator Application</h1>
+      </div>
     </main>
     </>
   )

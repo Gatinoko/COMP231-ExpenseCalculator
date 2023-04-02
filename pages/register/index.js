@@ -19,10 +19,12 @@ export default function Register({ query }) {
 
     return(
         <>
-        <main className={'container my-5'}>
-            <RegistrationForm valid={query.valid} 
-                alertMessage={query.message} 
-                messageType={query.messageType}/>
+        <main className="page-content-wrapper">
+            <div className="pt-4">
+                <RegistrationForm valid={query.valid} 
+                                  alertMessage={query.message} 
+                                  messageType={query.messageType}/>
+            </div>
         </main>
         </>
     )
