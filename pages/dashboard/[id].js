@@ -1,6 +1,7 @@
 // Component imports
 import ExpenseGroup from "@/Components/expenseDashboard/expenseGroup/expenseGroup";
 import ExpenseCard from "@/Components/expenseDashboard/expenseCard/expenseCard";
+import ExpenseModal from "@/Components/expenseModal/expenseModal";
 
 // Extra imports
 import { getUser } from "@/server/utils/fetchHelper"
@@ -10,8 +11,14 @@ import { getUser } from "@/server/utils/fetchHelper"
     Expense dashboard page
 */
 export default function Dashboard() {
+
+    const addExpenseModalId = "exampleModal"
+
     return(
         <>
+
+        <ExpenseModal modalId={addExpenseModalId} />
+
         <main className="page-content-wrapper">
             <div className="d-flex
                             flex-row
@@ -105,7 +112,9 @@ export default function Dashboard() {
                                           btn-dark 
                                           d-flex
                                           gap-2 
-                                          align-items-center" 
+                                          align-items-center"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target={`#${addExpenseModalId}`} 
                                     href="#">
 
                                     <i class="fa-solid fa-plus"/>
