@@ -1,5 +1,5 @@
 // CSS imports
-import styles from '../styles/index.module.css'
+import styles from "../styles/index.module.css";
 
 /*
     Index page
@@ -13,5 +13,5 @@ export default function Index() {
       </div>
     </main>
     </>
-  )
+  );
 }

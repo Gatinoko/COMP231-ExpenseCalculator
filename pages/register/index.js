@@ -1,7 +1,7 @@
 // Next/React imports
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 // Component imports
 import RegistrationForm from "@/Components/registrationForm/registrationForm";
@@ -12,10 +12,10 @@ import RegistrationForm from "@/Components/registrationForm/registrationForm";
 export default function Register({ query }) {
 
     // Clears the query strings on reload
-    const router = useRouter()
+    const router = useRouter();
     useEffect(() => {
-        router.replace('/register', undefined, { shallow: true })
-    }, [router.isReady])
+        router.replace("/register", undefined, { shallow: true })
+    }, [router.isReady]);
 
     return(
         <>
@@ -27,12 +27,12 @@ export default function Register({ query }) {
             </div>
         </main>
         </>
-    )
+    );
 }
 
 /*
     getServerSideProps funcion
 */
 export async function getServerSideProps({ query }) {
-    return { props: { query: query } }
+    return { props: { query: query } };
 }

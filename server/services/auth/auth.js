@@ -1,5 +1,4 @@
-const passport = require('passport'),
-jwt = require('jsonwebtoken')
+const passport = require("passport");
 
 // JWT authentication function
-exports.jwtAuth = passport.authenticate('jwt', { session: false, failureRedirect: '/login' })
+exports.jwtAuth = passport.authenticate("jwt", { session: false, failureRedirect: "/login" });

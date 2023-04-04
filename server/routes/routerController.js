@@ -1,7 +1,6 @@
-const Users = require('../../database/models/user'),
-auth = require('../services/auth/auth'),
-jwt = require('jsonwebtoken')
-
+const Users = require("../../database/models/user"),
+auth = require("../services/auth/auth"),
+jwt = require("jsonwebtoken");
 
 /*
     User type controllers
@@ -31,9 +30,9 @@ exports.getUser = async (req, res) => {
 
 // POST: http://localhost:4000/register
 exports.postUserRegistration = async (req, res) => {
-    const valid = req.valid
-    const message = req.alertMessage
-    const messageType = req.messageType
+    const valid = req.valid;
+    const message = req.alertMessage;
+    const messageType = req.messageType;
     if (valid === true) {
         const formData = {
             email: req.body.email,
@@ -41,18 +40,18 @@ exports.postUserRegistration = async (req, res) => {
             password: req.body.password
         }
         const user = await Users.create(formData);
-        return res.redirect('/register?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
+        return res.redirect("/register?" + `valid=${valid}&message=${message}&messageType=${messageType}`);
     }
     else {
-        res.redirect('/register?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
+        res.redirect("/register?" + `valid=${valid}&message=${message}&messageType=${messageType}`);
     }
 }
 
 // POST: http://localhost:4000/login
 exports.postUserLogin = async (req, res) => {
-    const valid = req.valid
-    const message = req.alertMessage
-    const messageType = req.messageType
+    const valid = req.valid;
+    const message = req.alertMessage;
+    const messageType = req.messageType;
     if (valid === true) {
         const token = jwt.sign(
             { 
@@ -61,19 +60,19 @@ exports.postUserLogin = async (req, res) => {
                 email: req.user.email,
                 roles: req.user.roles 
             }, 
-            'TOP_SECRET'
-        )
-        res.cookie('token', token, { httpOnly: true })
-        res.redirect(`/dashboard/${req.user._id}`)
+            "TOP_SECRET"
+        );
+        res.cookie("token", token, { httpOnly: true });
+        res.redirect(`/dashboard/${req.user._id}`);
     } else {
-        res.redirect('/login?' + `valid=${valid}&message=${message}&messageType=${messageType}`)
+        res.redirect("/login?" + `valid=${valid}&message=${message}&messageType=${messageType}`);
     }
 }
 
 // GET: http://localhost:4000/logout
 exports.getUserLogout = async (req, res) => {
-    res.clearCookie('token')
-    res.redirect('/')
+    res.clearCookie('token');
+    res.redirect('/');
 }
 
 /*
@@ -84,9 +83,9 @@ exports.postUserExpense = async(req, res) => {
     try {
         const userId = req.params._id;
         const user = await Users.findById(userId);
-        if (!user) throw Error("User not found.")
+        if (!user) throw Error("User not found.");
         else {
-            const formData = req.body
+            const formData = req.body;
             const expense = {
                 expenseName: formData.expenseName,
                 expenseType: formData.expenseType,
@@ -97,28 +96,28 @@ exports.postUserExpense = async(req, res) => {
                 await Users.findOneAndUpdate(
                     {
                         _id: userId,
-                        'expenseGroups.groupName': "Ungrouped"
+                        "expenseGroups.groupName": "Ungrouped"
                     },
                     {
-                        $push: { 'expenseGroups.$.expenses': { ...expense } }
+                        $push: { "expenseGroups.$.expenses": { ...expense } }
                     }, { upsert: true }
-                )
+                );
             }
             else {
                 await Users.findOneAndUpdate(
                     {
                         _id: userId,
-                        'expenseGroups.groupName': formData.expenseGroup
+                        "expenseGroups.groupName": formData.expenseGroup
                     },
                     {
-                        $push: { 'expenseGroups.$.expenses': { ...expense } }
+                        $push: { "expenseGroups.$.expenses": { ...expense } }
                     }, { upsert: true }
-                )
+                );
             }
-            return res.redirect(`/dashboard/${userId}`)
+            return res.redirect(`/dashboard/${userId}`);
         }
     } catch (error) {
-        res.json({ error: error.message })
+        res.json({ error: error.message });
     }
 }
 
@@ -127,28 +126,28 @@ exports.postUserExpenseGroup = async(req, res) => {
     try {
         const userId = req.params._id;
         const user = await Users.findById(userId);
-        if (!user) throw Error("User not found.")
+        if (!user) throw Error("User not found.");
         else {
-            const formData = req.body
+            const formData = req.body;
             const existingExpenseGroup = await Users.findOne(
                 {
                     _id: userId,
                     "expenseGroups.groupName": formData.groupName
                 }
-            )
-            if (existingExpenseGroup) throw Error("This group already exists.")
+            );
+            if (existingExpenseGroup) throw Error("This group already exists.");
             else {
                 await Users.findOneAndUpdate(
                     {
                         _id: userId
                     },
                     {
-                        $push: { 'expenseGroups': { ...formData } }
+                        $push: { "expenseGroups": { ...formData } }
                     }, { upsert: true }
-                )
+                );
             }
         }
     } catch (error) {
-        res.json({ error: error.message })
+        res.json({ error: error.message });
     }
 }

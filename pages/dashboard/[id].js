@@ -37,7 +37,7 @@ export default function Dashboard({ userExpenseGroups, userId }) {
                                 bg-dark
                                 shadow-sm
                                 flex-column
-                                p-3" style={{width: '300px'}}>  
+                                p-3" style={{width: "300px"}}>  
 
                     {/* Item list */}
                     <ul class="nav 
@@ -218,14 +218,14 @@ export default function Dashboard({ userExpenseGroups, userId }) {
             </div>
         </main>
         </>
-    )
+    );
 }
 
 /*
     getServerSideProps funcion
 */
 export async function getServerSideProps(context) {
-    const userId = context.params.id
-    const user = await getUser(userId)
-    return { props: { userExpenseGroups: user.expenseGroups, userId: userId } }
+    const userId = context.params.id;
+    const user = await getUser(userId);
+    return { props: { userExpenseGroups: user.expenseGroups, userId: userId } };
 }

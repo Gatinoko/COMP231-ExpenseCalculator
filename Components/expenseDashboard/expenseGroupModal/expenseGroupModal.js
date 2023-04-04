@@ -1,5 +1,5 @@
 // CSS imports
-import styles from './expenseGroupModal.module.css'
+import styles from "./expenseGroupModal.module.css";
 
 /*
     Expense modal component
@@ -12,7 +12,6 @@ export default function ExpenseGroupModal({ modalId, userId, userExpenseGroups }
              tabindex="-1" 
              aria-labelledby="exampleModalLabel" 
              aria-hidden="true">
-            
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -88,5 +87,5 @@ export default function ExpenseGroupModal({ modalId, userId, userExpenseGroups }
             </div>
         </div>
         </>
-    )
+    );
 }

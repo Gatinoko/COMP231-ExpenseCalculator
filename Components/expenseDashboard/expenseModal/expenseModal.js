@@ -1,5 +1,5 @@
 // CSS imports
-import styles from './expenseModal.module.css'
+import styles from "./expenseModal.module.css";
 
 /*
     Expense modal component
@@ -112,5 +112,5 @@ export default function ExpenseModal({ modalId, userId, userExpenseGroups }) {
             </div>
         </div>
         </>
-    )
+    );
 }

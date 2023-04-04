@@ -1,5 +1,5 @@
 const mongoose = require("mongoose"),
-ExpenseSchema = require("./expense")
+ExpenseSchema = require("./expense");
 
 const ExpenseGroupSchema = new mongoose.Schema({
     groupName: {

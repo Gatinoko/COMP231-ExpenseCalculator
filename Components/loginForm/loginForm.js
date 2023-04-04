@@ -1,8 +1,8 @@
 // React/Next imports
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 // CSS imports
-import styles from './loginForm.module.css'
+import styles from "./loginForm.module.css";
 
 /*
     Login form component
@@ -11,15 +11,19 @@ export default function LoginForm({ valid, alertMessage, messageType }) {
 
     // Converts valid parameter from string to bool
     let validBool = undefined;
-    if (valid !== undefined) { validBool = !(/false/i).test(valid) }
+    if (valid !== undefined) { validBool = !(/false/i).test(valid); }
 
     return(
         <>
-        <div className='container d-flex justify-content-center'>
-            <form className={`d-flex flex-column p-3 mx-5 shadow rounded ${styles['login-form']}`}>
+        <div className="container d-flex justify-content-center">
+            <form className={`${styles["login-form"]} 
+                              d-flex 
+                              flex-column 
+                              p-3 mx-5 
+                              shadow rounded`}>
 
                 {/* User login header */}
-                <div className='mb-3'>
+                <div className="mb-3">
                     <h1>User Login</h1>
                 </div>
 
@@ -31,7 +35,7 @@ export default function LoginForm({ valid, alertMessage, messageType }) {
                         className="form-control" 
                         id="emailInput" 
                         placeholder="name@example.com"
-                        name='email'
+                        name="email"
                         required />
                 </div>
 
@@ -42,33 +46,38 @@ export default function LoginForm({ valid, alertMessage, messageType }) {
                     <input type="password" 
                             className="form-control" 
                             id="passwordInput" 
-                            placeholder='*******'
-                            name='password' 
+                            placeholder="*******"
+                            name="password" 
                             required />
                 </div>
 
                 {/* Login button */}
                 <button type="submit"
-                        formMethod='POST' 
-                        className="btn btn-light align-self-center mb-3">Login</button>
+                        formMethod="POST" 
+                        className="btn 
+                                   btn-light 
+                                   align-self-center 
+                                   mb-3">
+                    Login
+                </button>
                 
                 {/* Registration text */}
-                <p className='align-self-center'>
-                    Not registered? Click <a href='/register'><u>here</u></a> and register now.
+                <p className="align-self-center">
+                    Not registered? Click <a href="/register"><u>here</u></a> and register now.
                 </p>
 
                 {/* Alert message */}
                 {
                     validBool === false ? (
-                        <div id='AlertBox' className={`alert alert-${messageType}`} role="alert">
+                        <div id="AlertBox" className={`alert alert-${messageType}`} role="alert">
                             {alertMessage}
                         </div>
                     ) : (
-                        <div id='AlertBox' role="alert"></div>
+                        <div id="AlertBox" role="alert"></div>
                     )
                 }
             </form>
         </div>
         </>
-    )
+    );
 }

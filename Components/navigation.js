@@ -2,33 +2,33 @@
 import { useContext, useEffect } from "react";
 
 // Component imports
-import cookieHelper from "@/server/utils/cookieHelper"
+import cookieHelper from "@/server/utils/cookieHelper";
 
 /*
     Component functions and variables
 */
 const loggedOutNav = [
-    { id: 0, name: 'Login', href: '/login'},
-    { id: 1, name: 'Register', href: '/register'}
+    { id: 0, name: "Login", href: "/login"},
+    { id: 1, name: "Register", href: "/register"}
 ]
 
 let loggedInNav = [
-    { id: 0, name: 'Expense Dashboard', href: '/dashboard'},
-    { id: 1, name: 'Logout', href: '/logout'}
+    { id: 0, name: "Expense Dashboard", href: "/dashboard"},
+    { id: 1, name: "Logout", href: "/logout"}
 ]
 
 function configureNavigationBarList(auth) {
-    const navigation = auth === false ? loggedOutNav : loggedInNav
-    return navigation
+    const navigation = auth === false ? loggedOutNav : loggedInNav;
+    return navigation;
 }
 
 function checkIfUserAuthenticated(serverProps) {
-    const authenticated = serverProps.jwtTokenContent === null ? false : true
+    const authenticated = serverProps.jwtTokenContent === null ? false : true;
     if (authenticated === true) {
-        const userId = serverProps.jwtTokenContent._id
-        loggedInNav[0].href = `/dashboard/${userId}`
+        const userId = serverProps.jwtTokenContent._id;
+        loggedInNav[0].href = `/dashboard/${userId}`;
     }
-    return authenticated
+    return authenticated;
 } 
 
 /*
@@ -36,24 +36,39 @@ function checkIfUserAuthenticated(serverProps) {
 */
 export default function Navigation({ serverProps }) {
 
-    let auth = checkIfUserAuthenticated(serverProps)
-    let navArray = configureNavigationBarList(auth)
+    let auth = checkIfUserAuthenticated(serverProps);
+    let navArray = configureNavigationBarList(auth);
 
     return(
         <>
-        <nav className="navbar navbar-expand-lg bg-light shadow-sm position-absolute w-100">
+        <nav className="navbar 
+                        navbar-expand-lg 
+                        bg-light 
+                        shadow-sm 
+                        position-absolute 
+                        w-100">
             <div className="container-fluid">
 
                 {/* Navbar brand element */}
-                <a className="navbar-brand" href="/"><h2>Navbar</h2></a>
+                <a className="navbar-brand" 
+                   href="/"><h2>Navbar</h2></a>
 
                 {/* Hamburger icon */}
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#navbarNavAltMarkup" 
+                        aria-controls="navbarNavAltMarkup" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
                 {/* Mobile collapsable list */}
-                <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div className="collapse 
+                                navbar-collapse 
+                                justify-content-end" 
+                      id="navbarNavAltMarkup">
 
                     {/* Navigation bar list */}
                     <div className="navbar-nav">
@@ -75,5 +90,5 @@ export default function Navigation({ serverProps }) {
             </div>
         </nav>
         </>
-    )
+    );
 }

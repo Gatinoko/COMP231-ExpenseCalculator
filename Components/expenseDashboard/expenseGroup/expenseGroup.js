@@ -1,8 +1,8 @@
 // CSS imports
-import styles from './expenseGroup.module.css'
+import styles from "./expenseGroup.module.css";
 
 // Component imports
-import ExpenseCard from '../expenseCard/expenseCard'
+import ExpenseCard from "../expenseCard/expenseCard";
 
 /*
     Expense group component
@@ -10,7 +10,7 @@ import ExpenseCard from '../expenseCard/expenseCard'
 export default function ExpenseDashboardGroup({ children }) {
     return(
         <>
-        <div className={`${styles['expense-group']}
+        <div className={`${styles["expense-group"]}
                         d-flex
                         flex-column
                         gap-3`}>
@@ -27,5 +27,5 @@ export default function ExpenseDashboardGroup({ children }) {
             </div>
         </div>
         </>
-    )
+    );
 }

@@ -1,7 +1,7 @@
 // Next/React imports
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 // Component imports
 import LoginForm from "../../Components/loginForm/loginForm";
@@ -12,10 +12,10 @@ import LoginForm from "../../Components/loginForm/loginForm";
 export default function Login({ query }) {
 
     // Clears the query strings on reload
-    const router = useRouter()
+    const router = useRouter();
     useEffect(() => {
-        router.replace('/login', undefined, { shallow: true })
-    }, [router.isReady])
+        router.replace("/login", undefined, { shallow: true });
+    }, [router.isReady]);
 
     return(
         <>
@@ -27,12 +27,12 @@ export default function Login({ query }) {
             </div>
         </main>
         </>
-    )
+    );
 }
 
 /*
     getServerSideProps funcion
 */
 export async function getServerSideProps({ query }) {
-    return { props: { query: query } }
+    return { props: { query: query } };
 }

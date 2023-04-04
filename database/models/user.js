@@ -1,6 +1,6 @@
-const mongoose = require('mongoose'),
-{ userRoles } = require('../resources/userRoles'),
-ExpenseGroupSchema = require("./expenseGroup")
+const mongoose = require("mongoose"),
+{ userRoles } = require("../resources/userRoles"),
+ExpenseGroupSchema = require("./expenseGroup");
 
 // User schema
 const UserSchema = new mongoose.Schema({
@@ -31,20 +31,20 @@ const UserSchema = new mongoose.Schema({
                     groupName: "Ungrouped",
                     expenses: [] 
                 } 
-            ] 
+            ]; 
         }
     }
 }, 
 {
-    collection: 'users'
+    collection: "users"
 });
 
 // Method to validate user password on login
 UserSchema.methods.isValidPassword = function(password) {
-    const user = this
-    const compare = (password === user.password)
-    return compare
+    const user = this;
+    const compare = (password === user.password);
+    return compare;
 }
 
-Users = mongoose.model('user', UserSchema);
+Users = mongoose.model("user", UserSchema);
 module.exports = Users;
