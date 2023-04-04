@@ -1,23 +1,31 @@
 // Component imports
 import ExpenseGroup from "@/Components/expenseDashboard/expenseGroup/expenseGroup";
 import ExpenseCard from "@/Components/expenseDashboard/expenseCard/expenseCard";
-import ExpenseModal from "@/Components/expenseModal/expenseModal";
+import ExpenseModal from "@/Components/expenseDashboard/expenseModal/expenseModal";
 
 // Extra imports
 import { getUser } from "@/server/utils/fetchHelper"
+import ExpenseGroupModal from "@/Components/expenseDashboard/expenseGroupModal/expenseGroupModal";
 
 
 /*
     Expense dashboard page
 */
-export default function Dashboard() {
+export default function Dashboard({ userExpenseGroups, userId }) {
 
-    const addExpenseModalId = "exampleModal"
+    const addExpenseModalId = "expenseModal"
+    const addExpenseGroupModalId = "expenseGroupModal"
 
     return(
         <>
 
-        <ExpenseModal modalId={addExpenseModalId} />
+        <ExpenseModal modalId={addExpenseModalId} 
+                      userId={userId} 
+                      userExpenseGroups={userExpenseGroups}/>
+        
+        <ExpenseGroupModal modalId={addExpenseGroupModalId} 
+                           userId={userId} 
+                           userExpenseGroups={userExpenseGroups}/>
 
         <main className="page-content-wrapper">
             <div className="d-flex
@@ -122,6 +130,23 @@ export default function Dashboard() {
                                     Add Expense
                                 </a>
                             </li>
+
+                            {/* Add expense */}
+                            <li class="nav-item">
+                                <a class="btn 
+                                          btn-dark 
+                                          d-flex
+                                          gap-2 
+                                          align-items-center"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target={`#${addExpenseGroupModalId}`} 
+                                    href="#">
+
+                                    <i class="fa-solid fa-plus"/>
+
+                                    Add Group
+                                </a>
+                            </li>
                         </div>
                     </ul>
                 </nav>
@@ -202,5 +227,5 @@ export default function Dashboard() {
 export async function getServerSideProps(context) {
     const userId = context.params.id
     const user = await getUser(userId)
-    return { props: { userExpenses: user.expenses } }
+    return { props: { userExpenseGroups: user.expenseGroups, userId: userId } }
 }
