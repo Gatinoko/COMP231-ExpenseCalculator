@@ -7,7 +7,7 @@ import ExpenseCard from "../expenseCard/expenseCard";
 /*
     Expense group component
 */
-export default function ExpenseDashboardGroup({ children }) {
+export default function ExpenseDashboardGroup({ children, groupName }) {
     return(
         <>
         <div className={`${styles["expense-group"]}
@@ -16,7 +16,7 @@ export default function ExpenseDashboardGroup({ children }) {
                         gap-3`}>
 
             {/* Expense group title */}
-            <h3>Expense group 1</h3>
+            <h3>{ groupName }</h3>
 
             {/* Expense cards */}
             <div className="d-flex 
