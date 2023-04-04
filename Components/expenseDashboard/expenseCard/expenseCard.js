@@ -14,7 +14,9 @@ export default function ExpenseCard({ expenseName, expenseType, expenseCost, exp
                         gap-2
                         p-3
                         rounded
-                        shadow-sm`}>
+                        shadow-sm
+                        bg-light
+                        text-dark`}>
 
             {/* Expense card title and actions */}
             <div id="TitleAndActions" 

@@ -11,12 +11,20 @@ export default function ExpenseDashboardGroup({ children, groupName }) {
     return(
         <>
         <div className={`${styles["expense-group"]}
-                        d-flex
-                        flex-column
-                        gap-3`}>
+                         d-flex
+                         flex-column
+                         gap-3
+                         rounded
+                         p-3
+                         shadow
+                         bg-dark
+                         text-light`}>
 
             {/* Expense group title */}
-            <h3>{ groupName }</h3>
+            <h3 className="border-bottom 
+                           pb-2">
+                { groupName }
+            </h3>
 
             {/* Expense cards */}
             <div className="d-flex 
