@@ -1,12 +1,6 @@
 const mongoose = require('mongoose'),
-{ userRoles } = require('../resources/userRoles')
-
-// Not yet implemented into schema
-const Expenses = {
-        expenseName: String,
-        expenseCost: Number,
-        expenseDate: Date
-};
+{ userRoles } = require('../resources/userRoles'),
+ExpenseGroupSchema = require("./expenseGroup")
 
 // User schema
 const UserSchema = new mongoose.Schema({
@@ -29,7 +23,17 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    expenses: Array
+    expenseGroups: {
+        type: Array(ExpenseGroupSchema),
+        default: () => {  
+            return [ 
+                { 
+                    groupName: "Ungrouped",
+                    expenses: [] 
+                } 
+            ] 
+        }
+    }
 }, 
 {
     collection: 'users'
