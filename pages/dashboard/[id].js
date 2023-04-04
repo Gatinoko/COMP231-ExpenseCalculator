@@ -200,19 +200,17 @@ export default function Dashboard({ userExpenseGroups, userId }) {
                                         h-100 
                                         overflow-hidden">
 
-                            <ExpenseGroup>
-                                <ExpenseCard expenseName={"Expense 1"}/>
-                                <ExpenseCard expenseName={"Expense 2"}/>
-                                <ExpenseCard expenseName={"Expense 3"}/>
-                                <ExpenseCard expenseName={"Expense 3"}/>
-                                <ExpenseCard expenseName={"Expense 3"}/>
-                                <ExpenseCard expenseName={"Expense 3"}/>
-                            </ExpenseGroup>
-                            <ExpenseGroup>
-                                <ExpenseCard expenseName={"Expense 1"}/>
-                                <ExpenseCard expenseName={"Expense 2"}/>
-                                <ExpenseCard expenseName={"Expense 3"}/>
-                            </ExpenseGroup>
+                            {
+                                userExpenseGroups.map((group) => (
+                                    <ExpenseGroup groupName={group.groupName}>
+                                        {
+                                            group.expenses.map((expense) => (
+                                                <ExpenseCard expenseName={expense.expenseName}/>
+                                            ))
+                                        }
+                                    </ExpenseGroup>
+                                ))
+                            }
                         </div>
                 </main>
             </div>
@@ -227,5 +225,10 @@ export default function Dashboard({ userExpenseGroups, userId }) {
 export async function getServerSideProps(context) {
     const userId = context.params.id;
     const user = await getUser(userId);
-    return { props: { userExpenseGroups: user.expenseGroups, userId: userId } };
+    return { 
+        props: { 
+            userExpenseGroups: user.expenseGroups,
+            userId: userId 
+        } 
+    };
 }
