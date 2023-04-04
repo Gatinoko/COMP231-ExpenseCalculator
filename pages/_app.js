@@ -13,7 +13,7 @@ import Navigation from "@/Components/navigation";
 import { Toast, ToastTypes } from "@/Components/toast/toast";
 
 // Extra imports
-import { Jwt } from "jsonwebtoken";
+import Jwt from 'jsonwebtoken'
 
 /*
   Application"s entry point component
@@ -61,7 +61,7 @@ App.getInitialProps = async (appContext) => {
 
   // Get server data and create serverProps object for component use
   const cookies = appContext.ctx.req.cookies;
-  const jwtTokenContent = jwt.decode(cookies.token);
+  const jwtTokenContent = Jwt.decode(cookies.token);
   const currentPath = appContext.router.pathname;
   const serverProps = { jwtTokenContent, currentPath };
 
