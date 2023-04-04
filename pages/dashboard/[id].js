@@ -205,7 +205,10 @@ export default function Dashboard({ userExpenseGroups, userId }) {
                                     <ExpenseGroup groupName={group.groupName}>
                                         {
                                             group.expenses.map((expense) => (
-                                                <ExpenseCard expenseName={expense.expenseName}/>
+                                                <ExpenseCard expenseName={expense.expenseName} 
+                                                             expenseType={expense.expenseType}
+                                                             expenseCost={expense.expenseCost}
+                                                             expenseDate={expense.expenseDate}/>
                                             ))
                                         }
                                     </ExpenseGroup>
