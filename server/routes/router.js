@@ -12,10 +12,14 @@ function initializeRouter(server, handle) {
     /* 
         API routes 
     */
-    server.get('/api/users', 
+    server.get('/api/get/users', 
         (req, res) => { return controller.getAllUsers(req, res) }) // GET users
-    server.get('/api/users/:_id', 
+    server.get('/api/get/users/:_id', 
         (req, res) => { return controller.getUser(req, res) }) // GET user
+    server.post('/api/post/userExpenses/:_id',
+        (req, res) => { return controller.postUserExpense(req, res) })
+    server.post('/api/post/userExpenseGroups/:_id',
+        (req, res) => { return controller.postUserExpenseGroup(req, res) })
 
     /*
         Authentication routes for registration, login, and logout

@@ -6,7 +6,7 @@ jwt = require('jsonwebtoken')
 /*
     User type controllers
 */
-// GET: http://localhost:4000/api/users
+// GET: http://localhost:4000/api/get/users
 exports.getAllUsers = async (req, res) => {
     try {
         const users = await Users.find();
@@ -17,7 +17,7 @@ exports.getAllUsers = async (req, res) => {
     }
 }
 
-// GET: http://localhost:4000/api/user/[:id]
+// GET: http://localhost:4000/api/get/user/[:id]
 exports.getUser = async (req, res) => {
     try {
         const userId = req.params._id;
@@ -76,3 +76,79 @@ exports.getUserLogout = async (req, res) => {
     res.redirect('/')
 }
 
+/*
+    Expense type controllers
+*/
+// POST: http://localhost:4000/api/post/userExpense/[:id]
+exports.postUserExpense = async(req, res) => {
+    try {
+        const userId = req.params._id;
+        const user = await Users.findById(userId);
+        if (!user) throw Error("User not found.")
+        else {
+            const formData = req.body
+            const expense = {
+                expenseName: formData.expenseName,
+                expenseType: formData.expenseType,
+                expenseCost: formData.expenseCost,
+                expenseDate: formData.expenseDate
+            }
+            if (formData.expenseGroup === "Ungrouped") {
+                await Users.findOneAndUpdate(
+                    {
+                        _id: userId,
+                        'expenseGroups.groupName': "Ungrouped"
+                    },
+                    {
+                        $push: { 'expenseGroups.$.expenses': { ...expense } }
+                    }, { upsert: true }
+                )
+            }
+            else {
+                await Users.findOneAndUpdate(
+                    {
+                        _id: userId,
+                        'expenseGroups.groupName': formData.expenseGroup
+                    },
+                    {
+                        $push: { 'expenseGroups.$.expenses': { ...expense } }
+                    }, { upsert: true }
+                )
+            }
+            return res.redirect(`/dashboard/${userId}`)
+        }
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+}
+
+// POST: http://localhost:4000/api/post/userExpenseGroups/[:id]
+exports.postUserExpenseGroup = async(req, res) => {
+    try {
+        const userId = req.params._id;
+        const user = await Users.findById(userId);
+        if (!user) throw Error("User not found.")
+        else {
+            const formData = req.body
+            const existingExpenseGroup = await Users.findOne(
+                {
+                    _id: userId,
+                    "expenseGroups.groupName": formData.groupName
+                }
+            )
+            if (existingExpenseGroup) throw Error("This group already exists.")
+            else {
+                await Users.findOneAndUpdate(
+                    {
+                        _id: userId
+                    },
+                    {
+                        $push: { 'expenseGroups': { ...formData } }
+                    }, { upsert: true }
+                )
+            }
+        }
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+}
