@@ -18,50 +18,31 @@ export default function ExpenseGroupModal({ modalId, userId, userExpenseGroups }
                     {/* Header */}
                     <div class="modal-header">
 
-                        {/* User login header */}
+                        {/* Manage groups header */}
                         <h1>Add Group</h1>
 
                         {/* Close button */}
                         <button type="button" 
                                 class="btn-close" 
                                 data-bs-dismiss="modal" 
-                                aria-label="Close"></button>
+                                aria-label="Close">        
+                        </button>
                     </div>
 
                     {/* Modal body */}
                     <div class="modal-body">
 
-                        {/* Add expense group model */}
+                        {/* Add expense group form */}
                         <form action={`/api/post/userExpenseGroups/${userId}`}>
-                            <div className="d-flex flex-column gap-4">
 
-                                {/* Current groups table */}
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Current Groups</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            userExpenseGroups.map((group) => (
-                                                <tr>
-                                                    <td scope="row">{ group.groupName }</td>
-                                                </tr>
-                                            ))
-                                        }
-                                    </tbody>
-                                </table>
-
-                                {/* Expense name input field */}
-                                <div className="mb-3">
-                                    <label className="form-label">Expense Group Name</label>
-                                    <input type="text" 
-                                           className="form-control" 
-                                           name="groupName"
-                                           placeholder="Expense Group Name"
-                                           required />
-                                </div>
+                            {/* Expense name input field */}
+                            <div className="mb-3">
+                                <label className="form-label">Expense Group Name</label>
+                                <input type="text" 
+                                    className="form-control" 
+                                    name="groupName"
+                                    placeholder="Expense Group Name"
+                                    required />
                             </div>
 
                             {/* Buttons */}
