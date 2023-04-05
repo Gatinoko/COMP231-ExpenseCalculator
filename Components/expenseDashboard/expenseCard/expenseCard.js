@@ -36,10 +36,14 @@ export default function ExpenseCard({ expenseName, expenseType, expenseCost, exp
                                 align-items-center">
 
                     {/* Pen icon */}
-                    <i className="fa-solid fa-pen" />
+                    <div className="custom-pen-button">
+                        <i className="fa-solid fa-pen" />
+                    </div>
 
                     {/* Trash icon */}
-                    <i className="fa-solid fa-trash" style={{color: "#ff4646"}} />
+                    <div className="custom-trash-button">
+                        <i className="fa-solid fa-trash" />
+                    </div>
                 </div>
             </div>
 
