@@ -10,6 +10,14 @@
 
   --background-color: rgb(233, 233, 233);
   --navbar-height: 70.56px;
+
+  --trash-icon-color: rgba(255, 70, 70, 0.250);
+  --trash-icon-color-hover: rgb(255, 70, 70);
+  --pen-icon-color: rgb(33, 37, 41, 0.250);
+  --pen-icon-color-hover: rgb(33, 37, 41);
+  
+  --icon-background-color: rgba(0, 0, 0, 0);
+  --icon-background-color-hover: rgba(255, 255, 255, 0);
 }
 
 /* HTML elements styling */
@@ -24,4 +32,48 @@ body {
 .page-content-wrapper {
   height: 100vh;
   padding-top: var(--navbar-height);
+}
+
+.custom-trash-button {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  padding: 4px;
+  border-style: solid;
+  border-color: rgba(55, 59, 62, 0);
+  border-width: 1px;
+  border-radius: 0.25rem;
+  background-color: var(--icon-background-color);
+  color: var(--trash-icon-color);
+  transition: background-color 0.25s, 
+              color 0.25s,
+              border-color 0.25s;
+}
+
+.custom-trash-button:hover {
+  cursor: pointer;
+  color: var(--trash-icon-color-hover);
+  background-color: var(--icon-background-color-hover);
+}
+
+.custom-pen-button {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  padding: 4px;
+  border-style: solid;
+  border-color: rgba(55, 59, 62, 0);
+  border-width: 1px;
+  border-radius: 0.25rem;
+  background-color: var(--icon-background-color);
+  color: var(--pen-icon-color);
+  transition: background-color 0.25s, 
+              color 0.25s,
+              border-color 0.25s;
+}
+
+.custom-pen-button:hover {
+  cursor: pointer;
+  color: var(--pen-icon-color-hover);
+  background-color: var(--icon-background-color-hover);
 }
