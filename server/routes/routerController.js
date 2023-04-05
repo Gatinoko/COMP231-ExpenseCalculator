@@ -145,6 +145,7 @@ exports.postUserExpenseGroup = async(req, res) => {
                         $push: { "expenseGroups": { ...formData } }
                     }, { upsert: true }
                 );
+                return res.redirect(`/dashboard/${userId}`);
             }
         }
     } catch (error) {
