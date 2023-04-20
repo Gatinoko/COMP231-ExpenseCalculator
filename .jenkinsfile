@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker { 
             image 'node:19-alpine'
-            args '--privileged'
+            args '-privileged'
         }
     }
     tools {
@@ -10,12 +10,6 @@ pipeline {
     }
 
     stages {
-        stage('Initialize'){
-            steps {
-                def dockerHome = tool 'docker'
-                env.PATH = "${docker}/bin:${env.PATH}"
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Building..'
