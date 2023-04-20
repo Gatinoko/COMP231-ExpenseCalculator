@@ -23,7 +23,7 @@ pipeline {
             }
         }
         stage('Deliver') {
-            always {
+            steps {
                 archiveArtifacts artifacts: '.next/**/*', fingerprint: true
             }
         }
