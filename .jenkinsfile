@@ -26,7 +26,7 @@ pipeline {
     
     post {
         always {
-            archiveArtifacts artifacts: './.next/**/*', fingerprint: true
+            archiveArtifacts artifacts: '.next/**/*', fingerprint: true
         }
     }
 }
