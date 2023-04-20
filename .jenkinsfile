@@ -22,11 +22,10 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-    }
-    
-    post {
-        always {
-            archiveArtifacts artifacts: '.next/**/*', fingerprint: true
+        stage('Deliver') {
+            always {
+                archiveArtifacts artifacts: '.next/**/*', fingerprint: true
+            }
         }
     }
 }
