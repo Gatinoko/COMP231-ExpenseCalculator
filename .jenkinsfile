@@ -23,4 +23,10 @@ pipeline {
             }
         }
     }
+    
+    post {
+        always {
+            archiveArtifacts artifacts: './next/**/*', fingerprint: true
+        }
+    }
 }
