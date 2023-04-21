@@ -50,6 +50,7 @@ pipeline {
             steps {
                 echo 'Deploying to prod..'
                 sh 'npm run nodeStart'
+                set -x
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 kill $(cat .pidfile)
             }
