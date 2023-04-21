@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { 
+        docker {
             image 'node:19-alpine'
         }
     }
@@ -49,10 +49,6 @@ pipeline {
         stage('Deploy to Production Env') {
             steps {
                 echo 'Deploying to prod..'
-                sh 'npm run nodeStart'
-                sh 'set -x'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                kill $(cat .pidfile)
             }
         }
     }
