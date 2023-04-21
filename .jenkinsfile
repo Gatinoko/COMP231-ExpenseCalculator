@@ -31,5 +31,26 @@ pipeline {
                 archiveArtifacts artifacts: '.next/**/*', fingerprint: true
             }
         }
+        stage('Deploy to Dev Env') {
+            steps {
+                echo 'Deploying to dev env..'
+            }
+        }
+        stage('Deploy to QAT Env') {
+            steps {
+                echo 'Deploying to QAT env..'
+            }
+        }
+        stage('Deploy to Staging Env') {
+            steps {
+                echo 'Deploying to staging env..'
+            }
+        }
+        stage('Deploy to Production Env') {
+            steps {
+                echo 'Deploying to prod..'
+                sh 'npm run nodeStart'
+            }
+        }
     }
 }
