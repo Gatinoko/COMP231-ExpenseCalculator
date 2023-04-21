@@ -15,8 +15,6 @@ This is a [Node.js](https://nodejs.org/en/about) project built using [Next.js](h
 In order to start the application from the command line, you should run the following command at the application's root folder:
 ```
 npm run serve
-
-npm run nodeRun
 ```
 
 ![Npm run dev example](https://i.imgur.com/nANYz0V.png)
